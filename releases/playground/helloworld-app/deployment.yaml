@@ -12,11 +12,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: hello-world-app
+  name: hello-world
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: hello-world-app
+    name: hello-world
   policy:
     alphabetical:
       order: asc
