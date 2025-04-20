@@ -17,7 +17,7 @@ spec:
   imageRepositoryRef:
     name: hello-world-app
   policy:
-    alphabetical:
+     alphabetical:
       order: asc
   filterTags:
     pattern: '^sha-[0-9a-f]{7,}'
