@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   image: rajputravi95/hello-world
-  interval: 2m
+  interval: 5m
   provider: generic
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
