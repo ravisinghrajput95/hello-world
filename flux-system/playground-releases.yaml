@@ -11,7 +11,6 @@ spec:
     branch: main
   secretRef:
     name: flux-system-git-auth
-    
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
