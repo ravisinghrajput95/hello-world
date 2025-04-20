@@ -18,8 +18,8 @@ spec:
   imageRepositoryRef:
     name: hello-world-app
   policy:
-    pattern:
-      regexp: "^sha-[a-f0-9]{7,}$"
+    alphabetical:
+      order: desc
 ---
 apiVersion: v1
 kind: Secret
