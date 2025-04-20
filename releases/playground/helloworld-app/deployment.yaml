@@ -4,7 +4,7 @@ metadata:
   name: hello-world-app
   namespace: flux-system
 spec:
-  image: beneboba/hello-world
+  image: rajputravi95/hello-world
   interval: 30s
   secretRef:
     name: dockerhub-key
