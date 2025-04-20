@@ -18,8 +18,7 @@ spec:
   imageRepositoryRef:
     name: hello-world-app
   policy:
-    specific:
-      tag: "${GITHUB_SHA}"
+    alphabetical: {}
 ---
 apiVersion: v1
 kind: Secret
