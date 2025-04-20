@@ -18,7 +18,8 @@ spec:
   imageRepositoryRef:
     name: hello-world-app
   policy:
-    alphabetical: {}
+    alphabetical:
+      order: asc
 ---
 apiVersion: v1
 kind: Secret
