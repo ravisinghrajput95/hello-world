@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  path: ./releases
+  path: ./releases/playground
   prune: true
   sourceRef:
     kind: GitRepository
@@ -49,5 +49,5 @@ spec:
     push:
       branch: main
   update:
-    path: ./releases
+    path: ./releases/playground
     strategy: Setters
