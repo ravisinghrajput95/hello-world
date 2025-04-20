@@ -54,7 +54,7 @@ spec:
         - name: dockerhub-key
       containers:
         - name: hello-world-app
-          image: rajputravi95/hello-world:20250420145655-sha-47aa356 #  {"$imagepolicy": "flux-system:hello-world-app"}
+          image: rajputravi95/hello-world:20250420150059-sha-0122481 #  {"$imagepolicy": "flux-system:hello-world-app"}
           ports:
             - containerPort: 8080
           resources:
