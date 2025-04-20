@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-push:
+    if: github.event.head_commit.author.name == 'fluxcdbot'
     runs-on: ubuntu-latest
     environment: playground
 
