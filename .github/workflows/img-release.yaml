@@ -22,6 +22,12 @@ jobs:
         with:
           go-version: '1.23'
 
+      - name: Get current timestamp
+        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+  
+      - name: Set short SHA
+        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+
       # 3. Extract Docker metadata. This action reads the Git tag (e.g. "1.0.0")
       #    and, using the semver type and pattern, uses it as the Docker tag.
       - name: Extract Docker metadata
@@ -32,7 +38,7 @@ jobs:
           # The "type=semver" option interprets the Git tag as a semantic version.
           # The pattern "{{version}}" uses the tag value as-is (e.g. "1.0.0").
           tags: |
-            type=sha,prefix=sha-
+            type=raw,value=${{ env.TIMESTAMP }}-sha-${{ env.SHORT_SHA }}
 
       # 4. Log in to Docker Hub. Ensure your Docker Hub credentials are stored as secrets.
       - name: Log in to Docker Hub

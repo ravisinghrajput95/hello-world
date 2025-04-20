@@ -20,7 +20,7 @@ spec:
     alphabetical:
       order: asc
   filterTags:
-    pattern: '^sha-[0-9a-f]{7,}'
+    pattern: '^\d{14}-sha-[0-9a-f]{7,}'
 ---
 apiVersion: v1
 kind: Secret
