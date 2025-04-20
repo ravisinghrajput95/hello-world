@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: hello-world
+  name: hello-world-app
   namespace: flux-system
 spec:
   image: rajputravi95/hello-world
@@ -12,11 +12,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: hello-world
+  name: hello-world-app
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: hello-world
+    name: hello-world-app
   policy:
     alphabetical:
       order: asc
