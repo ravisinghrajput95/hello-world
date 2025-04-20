@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  path: ./releases/playground 
+  path: ./releases
   prune: true
   sourceRef:
     kind: GitRepository
