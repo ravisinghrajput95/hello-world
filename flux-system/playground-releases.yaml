@@ -4,7 +4,7 @@ metadata:
   name: playground-releases
   namespace: flux-system
 spec:
-  interval: 30s
+  interval: 1s
   path: ./releases
   prune: true
   sourceRef:
