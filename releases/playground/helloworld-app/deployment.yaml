@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: hello-world-app
+  name: hello-world
   namespace: flux-system
 spec:
   image: rajputravi95/hello-world
@@ -17,11 +17,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: hello-world-app
-  filterTags:
-    pattern: '^sha-[a-f0-9]{7}$'
   policy:
-    alphabetical:
-      order: asc
+    pattern:
+      regexp: "^sha-[a-f0-9]{7,}$"
 ---
 apiVersion: v1
 kind: Secret
