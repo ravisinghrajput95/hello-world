@@ -32,7 +32,7 @@ jobs:
           # The "type=semver" option interprets the Git tag as a semantic version.
           # The pattern "{{version}}" uses the tag value as-is (e.g. "1.0.0").
           tags: |
-            type=sha
+            type=semver,pattern={{version}}
 
       # 4. Log in to Docker Hub. Ensure your Docker Hub credentials are stored as secrets.
       - name: Log in to Docker Hub
