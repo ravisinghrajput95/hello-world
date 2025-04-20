@@ -1,0 +1,105 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: hello-world-app
+  namespace: flux-system
+spec:
+  image: beneboba/hello-world
+  interval: 30s
+  secretRef:
+    name: dockerhub-key
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: hello-world-app
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hello-world-app
+  policy:
+    semver:
+      range: '>=0.0.1'
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hello-world-app-configs
+  namespace: playground
+type: Opaque
+stringData:
+  APP_NAME: "Go Hello World"
+  APP_PORT: "8080"
+  APP_ENV: "production"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-app
+  namespace: playground
+  labels:
+    app: hello-world-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world-app
+  template:
+    metadata:
+      labels:
+        app: hello-world-app
+    spec:
+      imagePullSecrets:
+        - name: dockerhub-key
+      containers:
+        - name: hello-world-app
+          image: rajputravi95/hello-world:2.0.1 # {"$imagepolicy": "flux-system:hello-world-app"}
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "250m" # Request 0.25 CPU
+              memory: "256Mi"
+            limits:
+              cpu: "500m" # Max 0.5 CPU
+              memory: "512Mi"
+          envFrom:
+            - secretRef:
+                name: "hello-world-app-configs"
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-world-app
+  namespace: playground
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-world-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50 # Target 70% CPU utilization
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-app
+  namespace: playground
+  labels:
+    app: hello-world-app
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: hello-world-app
