@@ -3,8 +3,8 @@ name: Build and Push Golang Docker Image
 on:
   # Trigger only when a tag that starts with a digit is pushed (e.g. 1.0.0)
   push:
-    tags:
-      - '[0-9]*'
+    branches:
+      - main
 
 jobs:
   build-and-push:
