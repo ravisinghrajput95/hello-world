@@ -5,7 +5,7 @@ metadata:
   name: hello-world
   namespace: flux-system
 spec:
-  interval: 1m
+  interval: 30s
   url: https://github.com/ravisinghrajput95/hello-world.git
   ref:
     branch: main
