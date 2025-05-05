@@ -1,7 +1,7 @@
 name: Build and Push Golang Docker Image
 
 on:
-  # Trigger only when a tag that starts with a digit is pushed (e.g. 1.0.0)
+  # Trigger only when a tag that starts with a digit is pushed
   push:
     branches:
       - main
